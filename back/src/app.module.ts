@@ -4,8 +4,8 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { TypegooseModule } from 'nestjs-typegoose'
 import { getMongoDbConfig } from './config/mongo.config copy'
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module'
+import { UserModule } from './user/user.module'
 
 @Module({
   imports: [

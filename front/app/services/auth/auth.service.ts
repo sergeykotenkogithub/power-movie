@@ -39,7 +39,7 @@ export const AuthService = {
 	async getNewToken() {
 		const refreshToken = Cookies.get('refreshToken')
 		const response = await axiosClassic.post<IAuthResponse>(
-			getAuthUrl('/login/acces-token'),
+			getAuthUrl('/login/access-token'),
 			{ refreshToken },
 			{ headers: getContentType() }
 		)

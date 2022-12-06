@@ -44,3 +44,5 @@ export const AuthItems: FC = () => {
 		</>
 	)
 }
+
+export default AuthItems

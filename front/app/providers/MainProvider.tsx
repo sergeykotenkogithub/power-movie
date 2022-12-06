@@ -6,12 +6,10 @@ import Layout from '@/components/layout/Layout'
 
 import { store } from '@/store/store'
 
+import AuthProvider from './AuthProvider/AuthProvider'
+import { TypeComponentAuthFields } from './AuthProvider/auth.types'
 import { HeadProvider } from './HeadProvider/HeadProvider'
 import { ReduxToast } from './ReduxToast'
-
-type Props = {
-	children?: React.ReactNode
-}
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -21,13 +19,18 @@ const queryClient = new QueryClient({
 	},
 })
 
-export const MainProvider: FC<Props> = ({ children }) => {
+export const MainProvider: FC<TypeComponentAuthFields> = ({
+	children,
+	Component,
+}) => {
 	return (
 		<HeadProvider>
 			<Provider store={store}>
 				<QueryClientProvider client={queryClient}>
 					<ReduxToast />
-					<Layout>{children}</Layout>
+					<AuthProvider Component={Component}>
+						<Layout>{children}</Layout>
+					</AuthProvider>
 				</QueryClientProvider>
 			</Provider>
 		</HeadProvider>

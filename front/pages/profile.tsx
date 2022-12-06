@@ -1,7 +1,9 @@
-import { NextPage } from 'next'
+import { NextPageAuth } from 'providers/AuthProvider/auth.types'
 
-const ProfilePage: NextPage = () => {
+const ProfilePage: NextPageAuth = () => {
 	return <div>profile</div>
 }
+
+ProfilePage.isOnlyUser = true
 
 export default ProfilePage

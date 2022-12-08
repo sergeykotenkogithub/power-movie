@@ -13,6 +13,7 @@ export const usePopularGenres = () => {
 		{
 			select: ({ data }) =>
 				data
+					.filter((genre) => genre.icon)
 					.map(
 						(genre) =>
 							({
@@ -21,7 +22,7 @@ export const usePopularGenres = () => {
 								title: genre.name,
 							} as IMenuItem)
 					)
-					.slice(0, 4),
+					.slice(0, 3),
 		}
 	)
 	return queryData

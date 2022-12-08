@@ -12,15 +12,15 @@ export const navItems: INavItem[] = [
 		link: getAdminUrl('users'),
 	},
 	{
-		title: 'Statistics',
+		title: 'Movies',
 		link: getAdminUrl('movies'),
 	},
 	{
-		title: 'Statistics',
+		title: 'Actors',
 		link: getAdminUrl('actors'),
 	},
 	{
-		title: 'Statistics',
+		title: 'Genres',
 		link: getAdminUrl('genres'),
 	},
 ]

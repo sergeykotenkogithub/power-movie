@@ -19,16 +19,9 @@ const HomePage: NextPage<any> = ({ slides, actors, trendingMovies }) => {
 		<Home slides={slides} actors={actors} trendingMovies={trendingMovies} />
 	)
 }
-// const HomePage: NextPage<any> = ({ slides }) => {
-// 	return <Home slides={slides} />
-
-// }
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
-		// const { data: movies } = await MovieService.getAll()
-
-		// console.log(movies)
 		const res = await fetch(`${API_URL}${getMoviesUrl('')}`)
 		const slidesRes = await res.json()
 		const slides = await slidesRes.slice(0, 3)

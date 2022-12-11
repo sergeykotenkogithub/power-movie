@@ -8,16 +8,10 @@ import Slider from '@/components/ui/slider/Slider'
 import { Meta } from '@/utils/meta/Meta'
 
 import { IHome } from './home.interface'
-import { usePopularGenres } from './usePopularGenres'
+import { useMoviesAllFilms } from './useMoviesAllFilms'
 
 const Home: FC<any> = ({ slides, actors, trendingMovies }) => {
-	// console.log('1111', slides)
-
-	const { isLoading, data } = usePopularGenres()
-
-	useEffect(() => {
-		console.log('newwww 111', data)
-	}, [data])
+	const { isLoading, data } = useMoviesAllFilms()
 
 	return (
 		<Meta
@@ -28,8 +22,8 @@ const Home: FC<any> = ({ slides, actors, trendingMovies }) => {
 				title="Watch movie online"
 				className="text-gray-300 mb-8 text-xl"
 			/>
-			{/* {data?.length && <Slider slides={data} />} */}
-			{slides?.length && <Slider slides={slides} />}
+			{data?.length && <Slider slides={data} />}
+			{/* {slides?.length && <Slider slides={slides} />} */}
 
 			<div className="my-10">
 				<SubHeading title="Trending now" />

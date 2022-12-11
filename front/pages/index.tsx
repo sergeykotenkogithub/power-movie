@@ -30,7 +30,8 @@ export const getStaticProps: GetStaticProps = async () => {
 
 		// console.log(movies)
 		const res = await fetch(`${API_URL}${getMoviesUrl('')}`)
-		const slides = await res.json()
+		const slidesRes = await res.json()
+		const slides = await slidesRes.slice(0, 3)
 
 		// console.log(JSON.stringify(movies))
 

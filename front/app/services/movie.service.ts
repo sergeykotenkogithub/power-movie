@@ -9,7 +9,7 @@ import { getMoviesUrl } from '@/config/api.config'
 
 export const MovieService = {
 	async getAll(searchTerm?: string) {
-		return axiosClassic.get<IMovie[]>(getMoviesUrl(``), {
+		return axiosClassic.get<IMovie[]>(getMoviesUrl(''), {
 			params: searchTerm
 				? {
 						searchTerm,
@@ -24,6 +24,11 @@ export const MovieService = {
 		)
 		return movies
 	},
+
+	async getAllFilm() {
+		return axiosClassic.get<IMovie[]>('http://localhost:3000/api/movies')
+	},
+
 	async getById(_id: string) {
 		return axios.get<IMovieEditInput>(getMoviesUrl(`/${_id}`))
 	},

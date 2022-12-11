@@ -110,6 +110,7 @@ export class MovieService {
 			title: '',
 			videoUrl: '',
 			slug: '',
+			// description: '',
 		}
 		const movie = await this.MovieModel.create(defaultValue)
 		return movie._id
@@ -140,27 +141,26 @@ export class MovieService {
 	}
 
 	async sendNotification(dto: UpdateMovieDto) {
+		// console.log(dto.poster)
 		// if(process.env.NODE_ENV !== 'development')
 		// await this.telegramService.sendPhoto(dto.poster)
 		// console.log(`http://localhost:4200${dto.poster}`)
 		// await this.telegramService.sendPhoto(`http://localhost:4200${dto.poster}`)
-		await this.telegramService.sendPhoto(
-			'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_FMjpg_UX1000_.jpg'
-		)
-
-		const msg = `<b>${dto.title}</b>`
-
-		await this.telegramService.sendMessage(msg, {
-			reply_markup: {
-				inline_keyboard: [
-					[
-						{
-							url: 'https://okko.tv/movie/free-guy',
-							text: '🍿 Go to watch',
-						},
-					],
-				],
-			},
-		})
+		// await this.telegramService.sendPhoto(
+		// 	'https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_FMjpg_UX1000_.jpg'
+		// )
+		// const msg = `<b>${dto.title}</b>`
+		// await this.telegramService.sendMessage(msg, {
+		// 	reply_markup: {
+		// 		inline_keyboard: [
+		// 			[
+		// 				{
+		// 					url: 'https://okko.tv/movie/free-guy',
+		// 					text: '🍿 Go to watch',
+		// 				},
+		// 			],
+		// 		],
+		// 	},
+		// })
 	}
 }

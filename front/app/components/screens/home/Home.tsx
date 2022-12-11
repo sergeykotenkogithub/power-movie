@@ -1,13 +1,24 @@
-import { FC } from 'react'
-import { toastr } from 'react-redux-toastr'
+import { FC, useEffect } from 'react'
 
+import Gallery from '@/components/ui/gallery/Gallery'
 import { Heading } from '@/components/ui/heading/Heading'
+import SubHeading from '@/components/ui/heading/SubHeading'
+import Slider from '@/components/ui/slider/Slider'
 
 import { Meta } from '@/utils/meta/Meta'
 
 import { IHome } from './home.interface'
+import { usePopularGenres } from './usePopularGenres'
 
-const Home: FC<IHome> = () => {
+const Home: FC<any> = ({ slides, actors, trendingMovies }) => {
+	// console.log('1111', slides)
+
+	const { isLoading, data } = usePopularGenres()
+
+	useEffect(() => {
+		console.log('newwww 111', data)
+	}, [data])
+
 	return (
 		<Meta
 			title="Watch movie online"
@@ -16,13 +27,19 @@ const Home: FC<IHome> = () => {
 			<Heading
 				title="Watch movie online"
 				className="text-gray-300 mb-8 text-xl"
-			>
-				Home page 111
-			</Heading>
+			/>
+			{/* {data?.length && <Slider slides={data} />} */}
+			{slides?.length && <Slider slides={slides} />}
 
-			{/* <button onClick={() => toastr.success('Auth', 'Yee, Success')}>
-				show message
-			</button> */}
+			<div className="my-10">
+				<SubHeading title="Trending now" />
+				{trendingMovies.length && <Gallery items={trendingMovies} />}
+			</div>
+
+			<div className="my-10">
+				<SubHeading title="Best actors" />
+				{actors.length && <Gallery items={actors} />}
+			</div>
 		</Meta>
 	)
 }

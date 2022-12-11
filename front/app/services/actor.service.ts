@@ -10,7 +10,7 @@ import { getActorsUrl } from '@/config/api.config'
 console.log()
 export const ActorService = {
 	async getAll(searchTerm?: string) {
-		return axiosClassic.get<IActor[]>(getActorsUrl(``), {
+		return axiosClassic.get<IActor[]>(getActorsUrl(''), {
 			params: searchTerm
 				? {
 						searchTerm,

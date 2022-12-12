@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 import { Meta } from '@/utils/meta/Meta'
 
-import { getMoviesUrl } from '@/config/api.config'
+import { getMovieUrl, getMoviesUrl } from '@/config/api.config'
 
 import GalleryItem from '../gallery/GalleryItem'
 import Description from '../heading/Description'
@@ -25,7 +25,7 @@ const Catalog: FC<ICatalog> = ({ movies, title, description }) => {
 							key={movie._id}
 							item={{
 								name: movie.title,
-								link: getMoviesUrl(`/${movie.slug}`),
+								link: getMovieUrl(`/${movie.slug}`),
 								posterPath: movie.bigPoster,
 								content: { title: movie.title },
 							}}

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { useMoviesAllFilms } from '@/components/screens/home/useMoviesAllFilms'
@@ -47,9 +48,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
 		const { data: actor } = await ActorService.getBySlug(String(params?.slug))
+		// const { data: movies } = await MovieService.getByActor(actor._id)
+		// console.log(movies)
 
-		const { data: movies } = await MovieService.getByActor(actor._id)
-		console.log(movies)
+		const res = await fetch(
+			`http://localhost:3000/api/movies/by-actor/${actor._id}`
+		)
+		const movies = await res.json()
+		// const movies = res.data
+
 		return {
 			props: {
 				movies,

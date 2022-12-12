@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -10,6 +11,8 @@ import { IGenre, IMovie } from '@/shared/types/movie.types'
 
 import { GenreService } from '@/services/genre.service'
 import { MovieService } from '@/services/movie.service'
+
+import { API_URL } from '@/config/api.config'
 
 import Error404 from '../404'
 
@@ -51,9 +54,37 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
 		const { data: genre } = await GenreService.getBySlug(String(params?.slug))
+		// console.log('wwww', genre)
+		// const { data: movies } = await MovieService.getByGenres([genre._id])
 
-		const { data: movies } = await MovieService.getByGenres([genre._id])
-		console.log(movies)
+		// const res = await fetch('http://localhost:3000/api/movies/by-genres', {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		Accept: 'application/json',
+		// 		'Content-Type': 'application/json;charset=utf-8',
+		// 		body: JSON.stringify({ genreIds: [genre._id] }),
+		// 	},
+		// })
+
+		const res = await axios.post('http://localhost:3000/api/movies/by-genres', {
+			genreIds: [genre._id],
+		})
+
+		const movies = res.data
+
+		// const movies = [{}]
+
+		// axios
+		// 	.post('http://localhost:3000/api/movies/by-genres', {
+		// 		genreIds: [genre._id],
+		// 	})
+		// 	.then((response) => {
+		// 		console.log(response)
+		// 	})
+
+		// const movies = [{}]
+
+		// console.log('111111111', res)
 
 		return {
 			props: { movies, genre },

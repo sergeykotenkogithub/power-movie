@@ -6,5 +6,5 @@ export const errorCatch = (error: any): string =>
 		: error.message
 
 export const getContentType = () => ({
-	'Content-Type': 'application/json',
+	'Content-Type': 'application/json;charset=utf-8',
 })

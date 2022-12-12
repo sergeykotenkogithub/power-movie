@@ -10,8 +10,7 @@ import { errorCatch, getContentType } from './api.helpers'
 
 export const axiosClassic = axios.create({
 	baseURL: API_URL,
-	// headers: getContentType(),
-	headers: { 'Content-Type': 'application/json' },
+	headers: getContentType(),
 })
 
 export const instance = axios.create({

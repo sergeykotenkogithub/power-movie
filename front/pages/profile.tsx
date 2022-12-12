@@ -1,7 +1,9 @@
 import { NextPageAuth } from 'providers/AuthProvider/auth.types'
 
+import Profile from '@/components/screens/profile/Profile'
+
 const ProfilePage: NextPageAuth = () => {
-	return <div>profile</div>
+	return <Profile />
 }
 
 ProfilePage.isOnlyUser = true

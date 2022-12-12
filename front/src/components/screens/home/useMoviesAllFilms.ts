@@ -20,7 +20,8 @@ export const useMoviesAllFilms = () => {
 							link: getMovieUrl(movie.slug),
 							bigPoster: movie.bigPoster,
 							subTitle: getGenresList(movie.genres),
-							title: movie.slug,
+							title: movie.title,
+							slug: movie.slug,
 						} as any)
 				),
 	})

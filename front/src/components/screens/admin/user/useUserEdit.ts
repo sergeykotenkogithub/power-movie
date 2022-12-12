@@ -44,7 +44,7 @@ export const useUserEdit = (setValue: UseFormSetValue<IUserEditInput>) => {
 		}
 	)
 
-	const onSubmit: SubmitHandler<IUserEditInput> = async (data) => {
+	const onSubmit: SubmitHandler<IUserEditInput> = async (data: any) => {
 		await mutateAsync(data)
 	}
 

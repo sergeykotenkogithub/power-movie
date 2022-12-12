@@ -7,6 +7,8 @@ import { IMovie } from '@/shared/types/movie.types'
 
 import { MovieService } from '@/services/movie.service'
 
+import { API_URL, getMoviesUrl } from '@/config/api.config'
+
 const TrendingPage: NextPage<{ movies: IMovie[] }> = ({ movies }) => {
 	return (
 		<Catalog
@@ -19,7 +21,10 @@ const TrendingPage: NextPage<{ movies: IMovie[] }> = ({ movies }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
-		const movies = await MovieService.getMostPopularMovies()
+		// const movies = await MovieService.getMostPopularMovies()
+
+		const res = await fetch(`${API_URL}${getMoviesUrl('/most-popular')}`)
+		const movies = await res.json()
 		return {
 			props: {
 				movies,

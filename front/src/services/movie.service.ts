@@ -2,6 +2,7 @@ import { axiosClassic } from 'api/interceptors'
 import axios from 'api/interceptors'
 
 import { IMovieEditInput } from '@/components/screens/admin/movie/movie-edit.interface'
+import { useUpdateCountOpened } from '@/components/screens/single-movie/useUpdateCountOpened'
 
 import { IMovie } from '@/shared/types/movie.types'
 
@@ -56,5 +57,10 @@ export const MovieService = {
 	},
 	async delete(_id: string) {
 		return axios.delete<string>(getMoviesUrl(`/${_id}`))
+	},
+	async updateCountOpened(slug: string) {
+		return axiosClassic.put<string>(getMoviesUrl(`/update-count-opened`), {
+			slug,
+		})
 	},
 }

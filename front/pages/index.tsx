@@ -23,6 +23,7 @@ const HomePage: NextPage<any> = ({ slides, actors, trendingMovies }) => {
 export const getStaticProps: GetStaticProps = async () => {
 	try {
 		// const { data: movies } = await MovieService.getAll()
+		// console.log(movies)
 
 		const res = await fetch(`${API_URL}${getMoviesUrl('')}`)
 		const slides = await res.json()
@@ -56,7 +57,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
 		console.log('getMostPopularMovies')
 
-		const dataTrendingMovies = await MovieService.getMostPopularMovies()
+		// const dataTrendingMovies = await MovieService.getMostPopularMovies()
+
+		const resPopular = await fetch(`${API_URL}${getMoviesUrl('/most-popular')}`)
+		const dataTrendingMovies = await resPopular.json()
+
+		console.log('111', dataTrendingMovies)
 
 		const trendingMovies: IGalleryItem[] = dataTrendingMovies
 			.slice(0, 7)

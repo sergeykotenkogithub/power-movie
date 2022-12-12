@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/react-star-rating-component": "^1.4.1"
+  }
+}

@@ -55,18 +55,18 @@ export const getStaticProps: GetStaticProps = async () => {
 			},
 		}))
 
-		console.log('getMostPopularMovies')
+		// console.log('getMostPopularMovies')
 
 		// const dataTrendingMovies = await MovieService.getMostPopularMovies()
 
 		const resPopular = await fetch(`${API_URL}${getMoviesUrl('/most-popular')}`)
 		const dataTrendingMovies = await resPopular.json()
 
-		console.log('111', dataTrendingMovies)
+		// console.log('111', dataTrendingMovies)
 
 		const trendingMovies: IGalleryItem[] = dataTrendingMovies
 			.slice(0, 7)
-			.map((m) => ({
+			.map((m: any) => ({
 				name: m.title,
 				posterPath: m.poster,
 				link: getMovieUrl(m.slug),

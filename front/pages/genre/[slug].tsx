@@ -57,20 +57,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		// console.log('wwww', genre)
 		// const { data: movies } = await MovieService.getByGenres([genre._id])
 
-		// const res = await fetch('http://localhost:3000/api/movies/by-genres', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		Accept: 'application/json',
-		// 		'Content-Type': 'application/json;charset=utf-8',
-		// 		body: JSON.stringify({ genreIds: [genre._id] }),
-		// 	},
-		// })
-
-		const res = await axios.post('http://localhost:3000/api/movies/by-genres', {
-			genreIds: [genre._id],
+		const res = await fetch('http://localhost:3000/api/movies/by-genres', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json;charset=utf-8',
+			},
+			body: JSON.stringify({ genreIds: [genre._id] }),
 		})
 
-		const movies = res.data
+		const movies = await res.json()
+
+		// const res = await axios.post('http://localhost:3000/api/movies/by-genres', {
+		// 	genreIds: [genre._id],
+		// })
+
+		// const movies = res.data
 
 		// const movies = [{}]
 

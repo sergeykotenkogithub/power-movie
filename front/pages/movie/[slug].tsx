@@ -23,14 +23,11 @@ const MoviePage: NextPage<IMoviePage> = ({ similarMovie, movie }) => {
 	) : (
 		<Error404 />
 	)
-	// return <div>111</div>
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	try {
 		// const { data: movies } = await MovieService.getAll()
-		// console.log('111', movies)
-
 		const res = await fetch(`${API_URL}${getMoviesUrl('')}`)
 		const movies = await res.json()
 
@@ -51,16 +48,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 	try {
-		const { data: movie } = await MovieService.getBySlug(String(params?.slug))
-
-		// const res = await fetch(`${API_URL}${getMoviesUrl('')}`)
-		// const slides = await res.json()
-
-		console.log('11', movie)
-
-		const { data: dataSimilarMovies } = await MovieService.getByGenres(
-			movie.genres.map((g) => g._id)
+		// const { data: movie } = await MovieService.getBySlug(String(params?.slug))
+		const res = await fetch(
+			// `${API_URL}${getMoviesUrl(`/by-slug/${params?.slug}`)}`
+			`http://localhost:3000/api/movies/by-slug/${params?.slug}`
 		)
+		const movie = await res.json()
+
+		// const { data: dataSimilarMovies } = await MovieService.getByGenres(
+		// 	movie.genres.map((g) => g._id)
+		// )
+
+		const resSimilarMovie = await fetch(
+			'http://localhost:3000/api/movies/by-genres',
+			{
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json;charset=utf-8',
+				},
+				body: JSON.stringify({ genreIds: [movie.genres.map((g) => g._id)] }),
+			}
+		)
+
+		const dataSimilarMovies = await resSimilarMovie.json()
+
+		console.log('daarta', dataSimilarMovies)
 
 		const similarMovie: IGalleryItem[] = dataSimilarMovies
 			.filter((m) => m._id !== movie._id)

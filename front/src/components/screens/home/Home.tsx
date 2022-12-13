@@ -11,7 +11,7 @@ import { IHome } from './home.interface'
 import { useMoviesAllFilms } from './useMoviesAllFilms'
 
 const Home: FC<any> = ({ slides, actors, trendingMovies }) => {
-	const { isLoading, data } = useMoviesAllFilms()
+	const { data } = useMoviesAllFilms()
 
 	return (
 		<Meta

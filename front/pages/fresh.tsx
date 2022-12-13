@@ -9,7 +9,6 @@ import { MovieService } from '@/services/movie.service'
 
 const FreshPage: NextPage<{ movies: IMovie[] }> = () => {
 	const { data: movies } = useMoviesAllFilms()
-	console.log('222', movies)
 	return (
 		<Catalog
 			movies={movies || []}
@@ -26,6 +25,7 @@ const FreshPage: NextPage<{ movies: IMovie[] }> = () => {
 // 			props: {
 // 				movies,
 // 			},
+// 			revalidate: 60,
 // 		}
 // 	} catch (error) {
 // 		return {

@@ -11,7 +11,8 @@ import { MovieService } from '@/services/movie.service'
 
 import { getGenresList } from '@/utils/movie/getGenresList'
 
-import { API_URL, getMoviesUrl } from '@/config/api.config'
+import { API_URL, IS_URL, getMoviesUrl } from '@/config/api.config'
+import { IS_PRODUCTION } from '@/config/constants'
 import { getActorUrl, getMovieUrl } from '@/config/url.config'
 
 const HomePage: NextPage<any> = ({ slides, actors, trendingMovies }) => {
@@ -25,13 +26,8 @@ export const getStaticProps: GetStaticProps = async () => {
 		// const { data: movies } = await MovieService.getAll()
 		// console.log(movies)
 
-		const res = await fetch(`${API_URL}${getMoviesUrl('')}`)
+		const res = await fetch(`${IS_URL}${getMoviesUrl('')}`)
 		const slides = await res.json()
-		// const slides = await slidesRes.slice(0, 3)
-
-		// console.log(JSON.stringify(movies))
-
-		// console.log('start11', JSON.stringify(movies))
 
 		// const slides: ISlide[] = movies.slice(0, 1).map((movie) => ({
 		// 	_id: movie._id,
@@ -40,8 +36,6 @@ export const getStaticProps: GetStaticProps = async () => {
 		// 	subTitle: getGenresList(movie.genres),
 		// 	title: movie.title,
 		// }))
-
-		// console.log('sssssllll', slidess)
 
 		const { data: dataActors } = await ActorService.getAll()
 
@@ -55,14 +49,10 @@ export const getStaticProps: GetStaticProps = async () => {
 			},
 		}))
 
-		// console.log('getMostPopularMovies')
-
 		// const dataTrendingMovies = await MovieService.getMostPopularMovies()
 
-		const resPopular = await fetch(`${API_URL}${getMoviesUrl('/most-popular')}`)
+		const resPopular = await fetch(`${IS_URL}${getMoviesUrl('/most-popular')}`)
 		const dataTrendingMovies = await resPopular.json()
-
-		// console.log('111', dataTrendingMovies)
 
 		const trendingMovies: IGalleryItem[] = dataTrendingMovies
 			.slice(0, 7)
@@ -78,6 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
 				actors,
 				trendingMovies,
 			} as IHome,
+			revalidate: 60,
 		}
 	} catch (error) {
 		return {

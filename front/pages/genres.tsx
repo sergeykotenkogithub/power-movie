@@ -5,8 +5,6 @@ import { ICollection } from '@/components/screens/collections/collections.interf
 
 import { GenreService } from '@/services/genre.service'
 
-import { API_URL, getMoviesUrl } from '@/config/api.config'
-
 import Error404 from './404'
 
 const GenresPage: NextPage<{ collections: ICollection[] }> = ({
@@ -23,12 +21,11 @@ export const getStaticProps: GetStaticProps = async () => {
 	try {
 		const { data: collections } = await GenreService.getCollections()
 
-		// const res = await fetch(`${API_URL}${getMoviesUrl('/most-popular')}`)
-		// const movies = await res.json()
 		return {
 			props: {
 				collections,
 			},
+			revalidate: 60,
 		}
 	} catch (error) {
 		return {

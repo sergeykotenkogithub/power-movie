@@ -7,7 +7,7 @@ import { IMovie } from '@/shared/types/movie.types'
 
 import { MovieService } from '@/services/movie.service'
 
-import { API_URL, IS_URL, getMoviesUrl } from '@/config/api.config'
+import { IS_URL, getMoviesUrl } from '@/config/api.config'
 import { getMovieUrl } from '@/config/url.config'
 
 import Error404 from '../404'

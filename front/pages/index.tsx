@@ -11,7 +11,7 @@ import { MovieService } from '@/services/movie.service'
 
 import { getGenresList } from '@/utils/movie/getGenresList'
 
-import { API_URL, IS_URL, getMoviesUrl } from '@/config/api.config'
+import { IS_URL, getMoviesUrl } from '@/config/api.config'
 import { IS_PRODUCTION } from '@/config/constants'
 import { getActorUrl, getMovieUrl } from '@/config/url.config'
 
